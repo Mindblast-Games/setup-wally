@@ -1,0 +1,48 @@
+name: "Setup Wally"
+description: "Install Aftman, set Wally credentials, and install packages."
+inputs:
+  install-aftman:
+    description: "Should Aftman be installed"
+    required: false
+    default: false
+  install-packages:
+    description: "If `wally install` should run"
+    required: false
+    default: true
+  token:
+    description: "Token for publishing packages or accessing private registries"
+    required: false
+  registry:
+    description: "The registry to set an auth token for"
+    required: false
+    default: "https://github.com/UpliftGames/wally-index"
+  git-credentials:
+    description: "Credentials to access private registry repositories"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Install Aftman
+      if: ${{ inputs.install-aftman }}
+      uses: ok-nick/setup-aftman@v0.3.0
+      
+    - name: Set git credentials
+      if: ${{ inputs.git-credentials }}
+      uses: de-vri-es/setup-git-credentials@v2.0.9
+      with:
+        credentials: ${{ inputs.git-credentials }}
+        
+    - name: Set auth token
+      if: ${{ inputs.token }}
+      run: |
+        mkdir -p $HOME/.wally
+        cat >> $HOME/.wally/auth.toml << EOF
+        [tokens]
+        ${{ inputs.registry }} = ${{ inputs.token }}
+        EOF
+      shell: bash
+        
+    - name: Install packages
+      if: ${{ inputs.install-packages }}
+      run: wally install
+      
