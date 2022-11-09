@@ -1,0 +1,10 @@
+[package]
+name = "mindblast-games/setup-wally"
+version = "1.0.0"
+registry = "https://github.com/Mindblast-Games/wally-index"
+license = "LGPL-2.1"
+realm = "shared"
+
+[dependencies]
+PublicPackage = "evaera/promise@^4.0"
+PrivatePackage = "testing/empty-package@^1.0"
