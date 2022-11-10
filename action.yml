@@ -39,24 +39,24 @@ runs:
   using: "composite"
   steps:
     - name: Install Aftman
-      if: ${{ inputs.install-aftman }}
+      if: ${{ inputs.install-aftman == 'true' }}
       uses: ok-nick/setup-aftman@v0.3.0
 
     - name: Install Foreman
-      if: ${{ inputs.install-foreman }}
+      if: ${{ inputs.install-foreman == 'true' }}
       uses: Roblox/setup-foreman@v1
       with:
         token: ${{ github.token }}
       
     - name: Set git credentials
-      if: ${{ inputs.git-credentials }}
+      if: ${{ inputs.git-credentials != '' }}
       run: |
         git config --global credential.helper store
         echo "${{ inputs.git-credentials }}" > $HOME/.git-credentials
       shell: bash
         
     - name: Set auth token
-      if: ${{ inputs.token }}
+      if: ${{ inputs.token != '' }}
       run: |
         mkdir -p $HOME/.wally
         cat >> $HOME/.wally/auth.toml << EOF
@@ -66,6 +66,6 @@ runs:
       shell: bash
         
     - name: Install packages
-      if: ${{ inputs.install-packages }}
+      if: ${{ inputs.install-packages == 'true' }}
       run: wally install
       shell: bash   
