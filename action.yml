@@ -1,5 +1,5 @@
 name: setup-wally
-description: Install Aftman, set Wally credentials, and install packages.
+description: GitHub action to set Wally and Git credentials, and install packages.
 branding:
   icon: arrow-down-circle
   color: blue
@@ -17,7 +17,7 @@ inputs:
     deprecationMessage: "Foreman has been deprecated in favour of Aftman"
     type: boolean
   install-packages:
-    description: "If `wally install` should run"
+    description: "Should `wally install` be run"
     required: false
     default: true
     type: boolean
@@ -26,9 +26,9 @@ inputs:
     required: false
     type: string
   registry:
-    description: "The registry to set an auth token for"
+    description: "The registry endpoint to set an auth token for"
     required: false
-    default: "https://github.com/UpliftGames/wally-index"
+    default: "https://api.wally.run/"
     type: string
   git-credentials:
     description: "Credentials to access private registry repositories"
