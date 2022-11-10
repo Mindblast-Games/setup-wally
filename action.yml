@@ -45,4 +45,5 @@ runs:
     - name: Install packages
       if: ${{ inputs.install-packages }}
       run: wally install
+      shell: bash
       
