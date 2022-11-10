@@ -9,20 +9,31 @@ inputs:
     description: "Should Aftman be installed"
     required: false
     default: false
+    type: boolean
+  install-foreman:
+    description: "Should Foreman be installed"
+    required: false
+    default: false
+    deprecationMessage: "Foreman has been deprecated in favour of Aftman"
+    type: boolean
   install-packages:
     description: "If `wally install` should run"
     required: false
     default: true
+    type: boolean
   token:
     description: "Token for publishing packages or accessing private registries"
     required: false
+    type: string
   registry:
     description: "The registry to set an auth token for"
     required: false
     default: "https://github.com/UpliftGames/wally-index"
+    type: string
   git-credentials:
     description: "Credentials to access private registry repositories"
     required: false
+    type: string
 
 runs:
   using: "composite"
@@ -30,6 +41,12 @@ runs:
     - name: Install Aftman
       if: ${{ inputs.install-aftman }}
       uses: ok-nick/setup-aftman@v0.3.0
+
+    - name: Install Foreman
+      if: ${{ inputs.install-foreman }}
+      uses: Roblox/setup-foreman@v1
+      with:
+        token: ${{ github.token }}
       
     - name: Set git credentials
       if: ${{ inputs.git-credentials }}
