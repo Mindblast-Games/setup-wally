@@ -7,26 +7,26 @@ GitHub action to set [Wally](https://github.com/UpliftGames/wally) and Git crede
 ```yml
 steps:
   - uses: ok-nick/setup-aftman@v0.3
-  - uses: Mindblast-Games/setup-wally@v1
+  - uses: Mindblast-Games/setup-wally@v1.0.0
 
 # OR (deprecated)
 
 steps:
   - uses: Roblox/setup-foreman@v1
-  - uses: Mindblast-Games/setup-wally@v1
+  - uses: Mindblast-Games/setup-wally@v1.0.0
 ```
 
 **Method 2:** Installing Wally in-action
 ```yml
 steps:
-  - uses: Mindblast-Games/setup-wally@v1
+  - uses: Mindblast-Games/setup-wally@v1.0.0
     with:
       install-aftman: true
 
 # OR (deprecated)
 
 steps:
-  - uses: Mindblast-Games/setup-wally@v1
+  - uses: Mindblast-Games/setup-wally@v1.0.0
     with:
       install-foreman: true
 
