@@ -38,7 +38,7 @@ runs:
         mkdir -p $HOME/.wally
         cat >> $HOME/.wally/auth.toml << EOF
         [tokens]
-        ${{ inputs.registry }} = ${{ inputs.token }}
+        "${{ inputs.registry }}" = "${{ inputs.token }}"
         EOF
       shell: bash
         
