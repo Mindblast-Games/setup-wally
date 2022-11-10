@@ -33,9 +33,10 @@ runs:
       
     - name: Set git credentials
       if: ${{ inputs.git-credentials }}
-      uses: de-vri-es/setup-git-credentials@v2.0.9
-      with:
-        credentials: ${{ inputs.git-credentials }}
+      run: |
+        git config --global credential.helper store
+        echo "${{ inputs.git-credentials }}" > $HOME/.git-credentials
+      shell: bash
         
     - name: Set auth token
       if: ${{ inputs.token }}
