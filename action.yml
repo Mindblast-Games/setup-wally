@@ -1,5 +1,9 @@
-name: "Setup Wally"
-description: "Install Aftman, set Wally credentials, and install packages."
+name: setup-wally
+description: Install Aftman, set Wally credentials, and install packages.
+branding:
+  icon: arrow-down-circle
+  color: blue
+
 inputs:
   install-aftman:
     description: "Should Aftman be installed"
@@ -19,6 +23,7 @@ inputs:
   git-credentials:
     description: "Credentials to access private registry repositories"
     required: false
+
 runs:
   using: "composite"
   steps:
@@ -45,5 +50,4 @@ runs:
     - name: Install packages
       if: ${{ inputs.install-packages }}
       run: wally install
-      shell: bash
-      
+      shell: bash   
